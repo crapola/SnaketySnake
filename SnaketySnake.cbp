@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="SnaketySnake" />
+		<Option pch_mode="2" />
+		<Option compiler="mingw64_gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/SnaketySnake_dbg" prefix_auto="1" extension_auto="1" />
+				<Option object_output="bin/obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="mingw64_gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/SnaketySnake" prefix_auto="1" extension_auto="1" />
+				<Option object_output="bin/obj/Release/" />
+				<Option type="0" />
+				<Option compiler="mingw64_gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-DNDEBUG" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-static" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Linker>
+			<Add library="gdi32" />
+			<Add library="user32" />
+			<Add library="kernel32" />
+			<Add library="winmm" />
+		</Linker>
+		<Unit filename="src/chrono.cpp" />
+		<Unit filename="src/chrono.h" />
+		<Unit filename="src/highscores.cpp" />
+		<Unit filename="src/highscores.h" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/p_nocopy.h" />
+		<Unit filename="src/p_private.cpp" />
+		<Unit filename="src/p_private.h" />
+		<Unit filename="src/p_types.cpp" />
+		<Unit filename="src/p_types.h" />
+		<Unit filename="src/p_winmain.cpp" />
+		<Unit filename="src/platform.cpp" />
+		<Unit filename="src/platform.h" />
+		<Unit filename="src/snake.cpp" />
+		<Unit filename="src/snake.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
