@@ -18,8 +18,10 @@ enum GameState
 {
 	MENU,
 	GAME,
-	GAMEOVER
+	GAMEOVER,
+	ENTRY
 } state;
+std::wstring name;
 void GameReset()
 {
 	lives=3;
@@ -76,6 +78,9 @@ bool Update()
 		break;
 	case GAMEOVER:
 		goto gameover;
+		break;
+	case ENTRY:
+		goto entry;
 		break;
 	default:
 		break;
@@ -174,12 +179,49 @@ game:
 	}
 	return true;
 gameover:
-	if (timer++==200)
+	if (timer++==100)
 	{
-		high_scores.Insert({score,L"PLAYER"});
 		timer=0;
-		state=MENU;
+		name.clear();
+		if (high_scores.Qualifies(score))
+		{
+			state=ENTRY;
+			platform::TextFont(L"Arial",16);
+		}
+		else
+		{
+			platform::Clear();
+			state=MENU;
+		}
+	}
+	return true;
+entry:
+	if (timer++==5)
+	{
+		timer=0;
+		int key=platform::KeyLast();
+		std::wstring name_view;
+		if (name.length()<32 && ((key>=65 && key<=90) || key==32))
+		{
+			name.push_back(key);
+			platform::Text(name.c_str(),128,256);
+		}
+		if (key==8 && !name.empty())
+		{
+			name.pop_back();
+		}
+		if (key==0x0D)
+		{
+			high_scores.Insert({score,name.c_str()});
+			state=MENU;
+			platform::Clear();
+			return true;
+		}
 		platform::Clear();
+		platform::Text(L"Enter your name and press ENTER:",128,240);
+		name_view=name;
+		name_view.push_back(L'<');
+		platform::Text(name_view.c_str(),128,256);
 	}
 	return true;
 }

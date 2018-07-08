@@ -32,6 +32,12 @@ bool KeyPressedAny()
 {
 	return platform::any_key_down;
 }
+int KeyLast()
+{
+	int returned=platform::last_key;
+	platform::last_key=0;
+	return returned;
+}
 void Text(const wchar_t* text,int x,int y)
 {
 	/*

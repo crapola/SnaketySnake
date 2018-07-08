@@ -18,6 +18,7 @@ long GetTicks();
 // Check if a key is currently pressed.
 bool KeyPressed(int virtual_key_code);
 bool KeyPressedAny();
+int KeyLast();
 // Draw text.
 void Text(const wchar_t*,int x,int y);
 // Draw text in rectangle with alignment.

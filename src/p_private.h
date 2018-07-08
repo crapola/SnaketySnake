@@ -12,6 +12,7 @@ namespace platform
 extern HWND hwnd; // Main window.
 extern int mouse_x,mouse_y;
 extern bool any_key_down;
+extern int last_key;
 // Main window back buffer, where we draw everything.
 class BufferBitmap
 {

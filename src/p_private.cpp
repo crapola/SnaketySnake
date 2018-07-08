@@ -5,7 +5,8 @@ namespace platform
 HINSTANCE instance;
 HWND hwnd;
 int mouse_x,mouse_y;
-bool any_key_down;
+bool any_key_down=false;
+int last_key=0;
 BufferBitmap buffer;
 BufferBitmap::BufferBitmap():_hbitmap(NULL),_hdc(NULL),_font(NULL),_old_bitmap(),_old_font(),_saved_dc(0)
 {

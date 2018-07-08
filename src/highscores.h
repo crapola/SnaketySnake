@@ -14,6 +14,7 @@ public:
 	void Insert(Entry);
 	bool Load();
 	void Populate();
+	bool Qualifies(int score) const;
 	void Save();
 private:
 	void Sort();

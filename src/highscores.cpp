@@ -14,7 +14,7 @@ HighScores::Entry HighScores::Get(size_t rank) const
 }
 void HighScores::Insert(Entry new_entry)
 {
-	if (new_entry.first<=_entries.back().first)
+	if (!Qualifies(new_entry.first))
 		return;
 	new_entry.second=new_entry.second.substr(0,32);
 	_entries.back()=new_entry;
@@ -49,6 +49,10 @@ void HighScores::Populate()
 		e.first=i--;
 		e.second=L"Snakety Snake";
 	}
+}
+bool HighScores::Qualifies(int score) const
+{
+	return (score>_entries.back().first);
 }
 void HighScores::Save()
 {
