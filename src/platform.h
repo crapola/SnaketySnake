@@ -15,10 +15,12 @@ int MouseX();
 int MouseY();
 // Retrieve the number of milliseconds since system start.
 long GetTicks();
+
+void KeyboardClear();
 // Check if a key is currently pressed.
 bool KeyPressed(int virtual_key_code);
-bool KeyPressedAny();
-int KeyLast();
+bool KeyPressedAny(); // todo: remove
+int KeyPressedLast();
 // Draw text.
 void Text(const wchar_t*,int x,int y);
 // Draw text in rectangle with alignment.

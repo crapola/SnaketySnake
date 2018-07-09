@@ -196,33 +196,31 @@ gameover:
 	}
 	return true;
 entry:
-	if (timer++==5)
+	int key=platform::KeyPressedLast();
+	std::wstring name_view;
+	if (name.length()<32 && ((key>=65 && key<=90) || key==32))
 	{
-		timer=0;
-		int key=platform::KeyLast();
-		std::wstring name_view;
-		if (name.length()<32 && ((key>=65 && key<=90) || key==32))
-		{
-			name.push_back(key);
-			platform::Text(name.c_str(),128,256);
-		}
-		if (key==8 && !name.empty())
-		{
-			name.pop_back();
-		}
-		if (key==0x0D)
-		{
-			high_scores.Insert({score,name.c_str()});
-			state=MENU;
-			platform::Clear();
-			return true;
-		}
-		platform::Clear();
-		platform::Text(L"Enter your name and press ENTER:",128,240);
-		name_view=name;
-		name_view.push_back(L'<');
-		platform::Text(name_view.c_str(),128,256);
+		name.push_back(key);
+		platform::Text(name.c_str(),128,256);
 	}
+	if (key==0x08 && !name.empty())
+	{
+		name.pop_back();
+	}
+	if (key==0x0D)
+	{
+		platform::KeyboardClear();
+		high_scores.Insert({score,name.c_str()});
+		state=MENU;
+		platform::Clear();
+		return true;
+	}
+	platform::Clear();
+	platform::Text(L"Enter your name and press ENTER:",128,240);
+	name_view=name;
+	if (platform::GetTicks()%1000>500) // Blink.
+		name_view.push_back(L'<');
+	platform::Text(name_view.c_str(),128,256);
 	return true;
 }
 void Exit()

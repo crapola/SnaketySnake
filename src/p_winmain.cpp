@@ -106,10 +106,14 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_ERASEBKGND:
 		return FALSE;
 		break;
-	case WM_KEYDOWN:
 	case WM_KEYUP:
-		platform::any_key_down=(uMsg==WM_KEYDOWN);
-		platform::last_key=uMsg==WM_KEYUP?wParam:0;
+		platform::any_key_down=false;
+		platform::last_key=0;
+		return TRUE;
+		break;
+	case WM_KEYDOWN:
+		platform::any_key_down=true;
+		platform::last_key=wParam;
 		return TRUE;
 		break;
 	case WM_PAINT:

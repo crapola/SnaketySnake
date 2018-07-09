@@ -24,6 +24,11 @@ long GetTicks()
 {
 	return GetTickCount();
 }
+void KeyboardClear()
+{
+	platform::any_key_down=false;
+	platform::last_key=0;
+}
 bool KeyPressed(int vkey)
 {
 	return GetAsyncKeyState(vkey);
@@ -32,11 +37,13 @@ bool KeyPressedAny()
 {
 	return platform::any_key_down;
 }
-int KeyLast()
+int KeyPressedLast()
 {
+	// Zero for proper repeat behavior.
 	int returned=platform::last_key;
 	platform::last_key=0;
 	return returned;
+
 }
 void Text(const wchar_t* text,int x,int y)
 {
