@@ -36,7 +36,7 @@ void DrawTopTen(int x,int y)
 	{
 		HighScores::Entry e=high_scores.Get(i);
 		std::wstringstream ss;
-		e.second.resize(32,L' ');
+		e.second.resize(high_scores.kNameSize,L' ');
 		ss<<(i<9?L" ":L"")<<(i+1)<<L". "<<e.second<<e.first<<L'\n';
 		table_string<<ss.str();
 	}
@@ -198,7 +198,7 @@ gameover:
 entry:
 	int key=platform::KeyPressedLast();
 	std::wstring name_view;
-	if (name.length()<32 && ((key>=65 && key<=90) || key==32))
+	if (name.length()<high_scores.kNameSize && ((key>=65 && key<=90) || key==32))
 	{
 		name.push_back(key);
 		platform::Text(name.c_str(),128,256);
@@ -218,7 +218,7 @@ entry:
 	platform::Clear();
 	platform::Text(L"Enter your name and press ENTER:",128,240);
 	name_view=name;
-	if (platform::GetTicks()%1000>500) // Blink.
+	if (platform::GetTicks()%1000>250) // Blink.
 		name_view.push_back(L'<');
 	platform::Text(name_view.c_str(),128,256);
 	return true;

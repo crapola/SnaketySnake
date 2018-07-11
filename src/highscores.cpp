@@ -16,7 +16,7 @@ void HighScores::Insert(Entry new_entry)
 {
 	if (!Qualifies(new_entry.first))
 		return;
-	new_entry.second=new_entry.second.substr(0,32);
+	new_entry.second=new_entry.second.substr(0,kNameSize);
 	_entries.back()=new_entry;
 	Sort();
 }

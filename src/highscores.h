@@ -6,6 +6,7 @@ High Scores
 class HighScores
 {
 public:
+	static const size_t kNameSize=32;
 	static const size_t kNumEntries=10;
 	typedef std::pair<long,std::wstring> Entry;
 	HighScores();
