@@ -35,7 +35,7 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE,LPSTR /*pCmdLine*/, int nCmdSho
 						 // /* Window style */WS_OVERLAPPEDWINDOW,
 						 WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX,
 						 /* Position */CW_USEDEFAULT,CW_USEDEFAULT,
-						 /* Size */800,600,
+						 /* Size */platform::kDisplayWidth,platform::kDisplayHeight,
 						 /* Parent window */NULL,
 						 /* Menu */NULL,
 						 /* Instance handle */hInstance,

@@ -14,6 +14,7 @@ HighScores high_scores;
 int lives;
 int score;
 int timer;
+snake::Event input_event;
 enum GameState
 {
 	MENU,
@@ -26,6 +27,7 @@ void GameReset()
 {
 	lives=3;
 	score=0;
+	input_event=snake::Event::NONE;
 	board.Reset();
 }
 void DrawTopTen(int x,int y)
@@ -106,7 +108,6 @@ menu:
 	return true;
 game:
 	// Input.
-	static snake::Event input_event=snake::Event::NONE;// Static so we don't need to keep pressed.
 	input_event=platform::KeyPressed(0x26)?snake::Event::INPUT_UP:
 				platform::KeyPressed(0x28)?snake::Event::INPUT_DOWN:
 				platform::KeyPressed(0x25)?snake::Event::INPUT_LEFT:

@@ -8,6 +8,8 @@
 #include "p_nocopy.h"
 namespace platform
 {
+const int kDisplayWidth=800;
+const int kDisplayHeight=600;
 //extern HINSTANCE instance;
 extern HWND hwnd; // Main window.
 extern int mouse_x,mouse_y;

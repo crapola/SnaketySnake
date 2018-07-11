@@ -14,7 +14,7 @@ BufferBitmap::BufferBitmap():_hbitmap(NULL),_hdc(NULL),_font(NULL),_old_bitmap()
 bool BufferBitmap::Init(HWND hwnd)
 {
 	HDC hdc=GetDC(hwnd);
-	_hbitmap=CreateCompatibleBitmap(hdc,800,600);
+	_hbitmap=CreateCompatibleBitmap(hdc,kDisplayWidth,kDisplayHeight);
 	_hdc=CreateCompatibleDC(hdc);
 	if (_hbitmap==NULL || _hdc==NULL)
 		return false;
