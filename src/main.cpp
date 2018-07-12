@@ -107,69 +107,69 @@ menu:
 	}
 	return true;
 game:
-	// Input.
-	input_event=platform::KeyPressed(0x26)?snake::Event::INPUT_UP:
-				platform::KeyPressed(0x28)?snake::Event::INPUT_DOWN:
-				platform::KeyPressed(0x25)?snake::Event::INPUT_LEFT:
-				platform::KeyPressed(0x27)?snake::Event::INPUT_RIGHT:
-				input_event;
-	// Update.
-	snake::Event event;
-	if (timer++==11)
 	{
-		event=board.Update(input_event);
-		timer=0;
-	}
-	// React to events.
-	switch (event)
-	{
-	case snake::Event::COLLIDE_SELF:
-	case snake::Event::COLLIDE_WALL:
-		lives--;
-		samples[1].Play();
-		if (lives<0)
+		// Input.
+		input_event=platform::KeyPressed(0x26)?snake::Event::INPUT_UP:
+					platform::KeyPressed(0x28)?snake::Event::INPUT_DOWN:
+					platform::KeyPressed(0x25)?snake::Event::INPUT_LEFT:
+					platform::KeyPressed(0x27)?snake::Event::INPUT_RIGHT:
+					input_event;
+		// Update.
+		snake::Event event=snake::Event::NONE;
+		if (timer++==11)
 		{
-			state=GAMEOVER;
-			platform::Text(L"Game Over",400-64,300-16);
+			event=board.Update(input_event);
 			timer=0;
-			return true;
 		}
-		board.Reset();
-		break;
-	case snake::Event::FRUIT_EAT:
-		samples[0].Play();
-		score+=1;
-		break;
-	case snake::Event::FRUIT_EAT_MAX:
-		samples[0].Play();
-		score+=10;
-		break;
-	default:
-		break;
-	}
-	// Draw board.
-	for (size_t y=0; y<board.kHeight; y++)
-		for (size_t x=0; x<board.kWidth; x++)
+		// React to events.
+		switch (event)
 		{
-			size_t pic;
-			switch (board.At(x,y).type)
+		case snake::Event::COLLIDE_SELF:
+		case snake::Event::COLLIDE_WALL:
+			lives--;
+			samples[1].Play();
+			if (lives<0)
 			{
-			case snake::Cell::EMPTY:
-				pic=1;
-				break;
-			case snake::Cell::FRUIT:
-				pic=2;
-				break;
-			default:
-				if (board.At(x,y).IsSnakeRange())
-					pic=3;
-				else
-					pic=0;
-				break;
+				state=GAMEOVER;
+				platform::Text(L"Game Over",400-64,300-16);
+				timer=0;
+				return true;
 			}
-			bitmaps[pic].Blit(80+x*32,32+y*32);
+			board.Reset();
+			break;
+		case snake::Event::FRUIT_EAT:
+			samples[0].Play();
+			score+=1;
+			break;
+		case snake::Event::FRUIT_EAT_MAX:
+			samples[0].Play();
+			score+=10;
+			break;
+		default:
+			break;
 		}
-	{
+		// Draw board.
+		for (size_t y=0; y<board.kHeight; y++)
+			for (size_t x=0; x<board.kWidth; x++)
+			{
+				size_t pic;
+				switch (board.At(x,y).type)
+				{
+				case snake::Cell::EMPTY:
+					pic=1;
+					break;
+				case snake::Cell::FRUIT:
+					pic=2;
+					break;
+				default:
+					if (board.At(x,y).IsSnakeRange())
+						pic=3;
+					else
+						pic=0;
+					break;
+				}
+				bitmaps[pic].Blit(80+x*32,32+y*32);
+			}
 		// Draw score and lives.
 		std::wstringstream ss;
 		ss<<L"Score: "<<score;
@@ -177,8 +177,8 @@ game:
 		ss.str(std::wstring()); // Best way to clear a stringstream.
 		ss<<L"Tries left: "<<lives;
 		platform::Text(ss.str().c_str(),592,0);
+		return true;
 	}
-	return true;
 gameover:
 	if (timer++==100)
 	{
