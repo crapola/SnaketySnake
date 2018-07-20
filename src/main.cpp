@@ -56,7 +56,7 @@ bool Setup()
 	ok&=bitmaps[1].Load(L"assets/grass.bmp");
 	ok&=bitmaps[2].Load(L"assets/fruit.bmp");
 	ok&=bitmaps[3].Load(L"assets/snake.bmp");
-	ok&=samples[0].Load(L"assets/zup.wav");
+	ok&=samples[0].Load(L"assets/wild_eep.wav");
 	ok&=samples[1].Load(L"assets/quack.wav");
 	if (!ok)
 		return false;
