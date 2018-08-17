@@ -53,7 +53,6 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE,LPSTR /*pCmdLine*/, int nCmdSho
 		return EXIT_FAILURE;
 	}
 	ShowWindow(platform::hwnd,nCmdShow);
-	platform::any_key_down=false;
 	SetTimer(platform::hwnd,0,500,NULL);
 	Chrono c;
 	if (!Setup())
@@ -107,12 +106,10 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		return FALSE;
 		break;
 	case WM_KEYUP:
-		platform::any_key_down=false;
 		platform::last_key=0;
 		return TRUE;
 		break;
 	case WM_KEYDOWN:
-		platform::any_key_down=true;
 		platform::last_key=wParam;
 		return TRUE;
 		break;

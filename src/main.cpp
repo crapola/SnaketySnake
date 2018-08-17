@@ -96,7 +96,7 @@ menu:
 	platform::Text(L"Use arrow keys to control the snake.\nPress any key to start, or ESC to exit.",128,48);
 	platform::TextFont(L"Courier New",16);
 	DrawTopTen(128,240);
-	if (platform::KeyPressedAny())
+	if (platform::KeyPressedLast())
 	{
 		state=GAME;
 		timer=0;
