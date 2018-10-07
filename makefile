@@ -6,18 +6,19 @@ src_folders=src
 src_files=$(foreach p,$(src_folders),$(wildcard $(p)/*.cpp))
 objdir=temp
 objs=$(addprefix $(objdir)/,$(addsuffix .o,$(notdir $(basename $(src_files)))))
+target=$(objdir)/snaketysnake.exe
 # Target.
-all: $(objdir)/snaketysnake.exe
-	@echo Done. Output file is ./$(objdir)/snaketysnake.exe
+all: $(target)
+	@echo Done. Output file is ./$(target)
 # Link.
-$(objdir)/snaketysnake.exe: $(objs)
-	$(CXX) -o $(objdir)/snaketysnake.exe $(objs) $(LDFLAGS) $(LDLIBS)
-# Clean temp folder.
-clean:
-	del $(objdir)\*.o
+$(target): $(objs)
+	$(CXX) -o $(target) $(objs) $(LDFLAGS) $(LDLIBS)
 # Compile object files.
 $(objdir)/%.o: src/%.cpp | $(objdir)
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 # Create temp/ folder.
 $(objdir):
 	mkdir $@
+# Clean temp folder.
+clean:
+	del $(objdir)\*.o
