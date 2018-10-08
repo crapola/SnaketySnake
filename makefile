@@ -12,7 +12,8 @@ all: $(target)
 	@echo Done. Output file is ./$(target)
 # Link.
 $(target): $(objs)
-	$(CXX) -o $(target) $(objs) $(LDFLAGS) $(LDLIBS)
+	windres.exe -J rc -O coff -i src/resource.rc -o $(objdir)/resource.res
+	$(CXX) -o $(target) $(objs) $(objdir)/resource.res $(LDFLAGS) $(LDLIBS)
 # Compile object files.
 $(objdir)/%.o: src/%.cpp | $(objdir)
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
