@@ -30,16 +30,16 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE,LPSTR /*pCmdLine*/, int nCmdSho
 	// Create the window.
 	platform::hwnd = CreateWindowEx(
 						 /* Extended styles */0,
-						 /* Window class */CLASS_NAME,
-						 /* Window text */L"Windows program",
-						 // /* Window style */WS_OVERLAPPEDWINDOW,
+						 /*    Window class */CLASS_NAME,
+						 /*     Window text */L"Windows program",
+						 /*    Window style *///WS_OVERLAPPEDWINDOW,
 						 WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX,
-						 /* Position */CW_USEDEFAULT,CW_USEDEFAULT,
-						 /* Size */platform::kDisplayWidth,platform::kDisplayHeight,
-						 /* Parent window */NULL,
-						 /* Menu */NULL,
+						 /*        Position */CW_USEDEFAULT,CW_USEDEFAULT,
+						 /*            Size */platform::kDisplayWidth,platform::kDisplayHeight,
+						 /*   Parent window */NULL,
+						 /*            Menu */NULL,
 						 /* Instance handle */hInstance,
-						 /* Additional Data */NULL
+						 /* Additional data */NULL
 					 );
 	if (platform::hwnd==NULL)
 	{
@@ -81,6 +81,8 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE,LPSTR /*pCmdLine*/, int nCmdSho
 				Sleep() has a default granularity of about 15 ms. This is a
 				system wide setting.
 			*/
+
+			// TODO: fix
 			Sleep(10);
 		}
 	}
