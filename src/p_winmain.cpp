@@ -15,13 +15,15 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 // Windows entry point.
 int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE,LPSTR /*pCmdLine*/, int nCmdShow)
 {
+	// Load icon.
+	HICON icon=LoadIcon(GetModuleHandle(NULL),MAKEINTRESOURCE(101));
 	// Register the window class.
 	const wchar_t CLASS_NAME[]=L"MyWindowClass";
 	WNDCLASSEX wc{};
 	wc.cbSize=sizeof(WNDCLASSEX);
 	wc.style=CS_OWNDC;
 	wc.lpfnWndProc=WindowProc;
-	wc.hIcon=NULL;
+	wc.hIcon=icon;
 	wc.hCursor=LoadCursor(NULL,IDC_ARROW);
 	wc.hInstance=hInstance;
 	wc.lpszClassName=CLASS_NAME;
@@ -57,6 +59,8 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE,LPSTR /*pCmdLine*/, int nCmdSho
 	Chrono c;
 	if (!Setup())
 		return 0;
+	// Set time granularity.
+	timeBeginPeriod(10);
 	// Run the message loop.
 	MSG msg{};
 	while (msg.message!=WM_QUIT)
@@ -87,6 +91,7 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE,LPSTR /*pCmdLine*/, int nCmdSho
 		}
 	}
 	Exit();
+	timeEndPeriod(10);
 	return EXIT_SUCCESS;
 }
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
