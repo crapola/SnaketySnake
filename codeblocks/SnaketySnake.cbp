@@ -41,6 +41,9 @@
 			<Add library="kernel32" />
 			<Add library="winmm" />
 		</Linker>
+		<Unit filename="../res/resources.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
 		<Unit filename="../src/chrono.cpp" />
 		<Unit filename="../src/chrono.h" />
 		<Unit filename="../src/highscores.cpp" />
@@ -54,9 +57,6 @@
 		<Unit filename="../src/p_winmain.cpp" />
 		<Unit filename="../src/platform.cpp" />
 		<Unit filename="../src/platform.h" />
-		<Unit filename="../src/resource.rc">
-			<Option compilerVar="WINDRES" />
-		</Unit>
 		<Unit filename="../src/snake.cpp" />
 		<Unit filename="../src/snake.h" />
 		<Extensions>

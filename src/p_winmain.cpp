@@ -2,6 +2,8 @@
 // Testing:
 #include <iostream>
 #include "chrono.h"
+// IDI_ICON1
+#include "../res/resources.h"
 // User functions.
 bool Setup();
 bool Update();
@@ -16,7 +18,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE,LPSTR /*pCmdLine*/, int nCmdShow)
 {
 	// Load icon.
-	HICON icon=LoadIcon(GetModuleHandle(NULL),MAKEINTRESOURCE(101));
+	HICON icon=LoadIcon(GetModuleHandle(NULL),MAKEINTRESOURCE(IDI_ICON1));
 	// Register the window class.
 	const wchar_t CLASS_NAME[]=L"MyWindowClass";
 	WNDCLASSEX wc{};
@@ -82,11 +84,9 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE,LPSTR /*pCmdLine*/, int nCmdSho
 			// Invalidating the whole window is less costly than doing it for each item.
 			InvalidateRect(platform::hwnd,NULL,FALSE);
 			/*
-				Sleep() has a default granularity of about 15 ms. This is a
-				system wide setting.
+			Sleep() has a default granularity of about 15 ms. We change it
+			via timeBeginPeriod.
 			*/
-
-			// TODO: fix
 			Sleep(10);
 		}
 	}

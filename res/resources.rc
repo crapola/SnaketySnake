@@ -1,7 +1,7 @@
 #include <winver.h>
+#include "resources.h"
 
-#define IDI_ICON1 101
-IDI_ICON1 ICON "../assets/appicon.ico"
+IDI_ICON1 ICON "appicon.ico"
 
 #define VER_FILEVERSION             1,0,0,0
 #define VER_FILEVERSION_STR         "1.0.0.0\0"
